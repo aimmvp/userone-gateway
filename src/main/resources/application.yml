@@ -1,0 +1,74 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: booking
+          uri: http://localhost:8081
+          predicates:
+            - Path=/bookings/** 
+        - id: notification
+          uri: http://localhost:8082
+          predicates:
+            - Path=/notifications/** 
+        - id: room
+          uri: http://localhost:8083
+          predicates:
+            - Path=/rooms/** 
+        - id: roomlist
+          uri: http://localhost:8084
+          predicates:
+            - Path= /roomlists/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: booking
+          uri: http://booking:8080
+          predicates:
+            - Path=/bookings/** 
+        - id: notification
+          uri: http://notification:8080
+          predicates:
+            - Path=/notifications/** 
+        - id: room
+          uri: http://room:8080
+          predicates:
+            - Path=/rooms/** 
+        - id: roomlist
+          uri: http://roomlist:8080
+          predicates:
+            - Path= /roomlists/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080
