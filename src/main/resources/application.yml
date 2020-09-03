@@ -12,18 +12,22 @@ spring:
           uri: http://localhost:8081
           predicates:
             - Path=/bookings/** 
-        - id: notification
+        - id: confirm
           uri: http://localhost:8082
           predicates:
-            - Path=/notifications/** 
-        - id: room
+            - Path=/confirms/** 
+        - id: notification
           uri: http://localhost:8083
           predicates:
-            - Path=/rooms/** 
-        - id: roomlist
+            - Path=/notifications/** 
+        - id: realuse
           uri: http://localhost:8084
           predicates:
-            - Path= /roomlists/**
+            - Path= /realuse/**
+        - id: roomUseList
+          uri: http://localhost:8085
+          predicates:
+            - Path= /roomUseLists/**
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -35,7 +39,6 @@ spring:
               - "*"
             allowCredentials: true
 
-
 ---
 
 spring:
@@ -46,19 +49,23 @@ spring:
         - id: booking
           uri: http://booking:8080
           predicates:
-            - Path=/bookings/** 
+            - Path=/bookings/**
+        - id: confirm
+          uri: http://confirm:8080
+          predicates:
+            - Path=/confirms/** 
         - id: notification
           uri: http://notification:8080
           predicates:
             - Path=/notifications/** 
-        - id: room
-          uri: http://room:8080
+        - id: realuse
+          uri: http://realuse:8080
           predicates:
-            - Path=/rooms/** 
-        - id: roomlist
-          uri: http://roomlist:8080
+            - Path=/realuses/** 
+        - id: roomUseList
+          uri: http://roomuselist:8080
           predicates:
-            - Path= /roomlists/**
+            - Path= /roomUseLists/**
       globalcors:
         corsConfigurations:
           '[/**]':

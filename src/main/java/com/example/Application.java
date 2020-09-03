@@ -9,6 +9,7 @@ public class Application {
 
     public static ApplicationContext applicationContext;
     public static void main(String[] args) {
+        System.out.println("gateway log add");
         applicationContext = SpringApplication.run(Application.class, args);
     }
 
